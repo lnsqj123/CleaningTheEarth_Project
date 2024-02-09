@@ -10,20 +10,20 @@ export default function TierImg(Point) {
     let subTier = parseInt(Point % 100 / 20);
 
     function getSubTier() {
-        let emptySubTier = <View id='subTierCircle' style={styles.subTierBack}/>
-        let filledSubTier =
-            <View id='subTierBack' style={styles.subTierBack}>
-                <View id='subTierInner' style={styles.subTierInner}/>
-            </View>
-
         let result = [];
         for (let i=0; i<4; i++) {
             if (i < 4-subTier) 
-                result.push(emptySubTier);
+                result.push(
+                    <View key={i} id='subTierCircle' style={styles.subTierBack}/>
+                );
             else
-                result.push(filledSubTier);
+                result.push(
+                    <View key={i} id='subTierBack' style={styles.subTierBack}>
+                        <View id='subTierInner' style={styles.subTierInner}/>
+                    </View>
+                );
         }
-        return result
+        return result;
     };
 
 

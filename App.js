@@ -2,7 +2,8 @@ import { StyleSheet, Text, View, Pressable, Alert, StatusBar, Image } from 'reac
 import useState from 'react';
 import * as ImagePicker from 'expo-image-picker';
 import TierImg from './TierImg.js';
-import './Items.json';
+import CheckList from './CheckList.js';
+import Items from './Items.json';
 
 export default function App() {
     const [point, setPoint] = useState.useState(0);
@@ -41,17 +42,7 @@ export default function App() {
 
             {TierImg(point)}
 
-            <View id='tmpCheckList' style={styles.tmpCheckList}>
-                <View id='tmpItemThumbnail' style={styles.tmpItemThumbnail}/>
-                <View id='itemBtns' style={{flexDirection: 'row'}}>
-                    <Pressable id='countItemBtn' style={styles.statusBtn} onPress={()=>setPoint(point+15)}>
-                        <Text style={styles.buttonLabel}>+</Text>
-                    </Pressable>
-                    <Pressable id='countItemBtn' style={styles.tmpBtn} onPress={()=>{setPoint(0);console.log('tmp Reset, will be Edit Button')}}>
-                        <Text style={styles.buttonLabel}>⋯</Text>
-                    </Pressable>
-                </View>
-            </View>
+            {CheckList(setPoint, point, Items)}
         </View>
     );
 }
@@ -94,19 +85,5 @@ const styles = StyleSheet.create({
         backgroundColor: '#FF0088',
         alignItems: 'center',
         justifyContent: 'center',
-    },
-    tmpCheckList: {
-        padding: 14,
-        width: '100%',
-        height: 96,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-    tmpItemThumbnail: {
-        marginHorizontal: 4,
-        width: 72,
-        height: 72,
-        backgroundColor: '#CCCCCC',
     },
 });
